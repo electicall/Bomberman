@@ -1,6 +1,8 @@
 #include <stdio.h>
-#include<sys/socket.h>
-#include<arpa/inet.h> //inet_addr
+#include <string.h>
+#include <sys/socket.h>
+#include <arpa/inet.h> //inet_addr
+#include "graphix.c"
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -9,6 +11,14 @@
 #define KMAG  "\x1B[35m"
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
+
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1)+strlen(s2)+1);
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
 
 
 int recvBomber (int *datagramma)
@@ -32,6 +42,7 @@ void redraw_Screen()
 
 int main(void)
 {
+  /*
 //game start
 int sock, client_sock, c, read_size;
 struct sockaddr_in server, client;
@@ -77,6 +88,10 @@ scanf("%s",serverPort);
 
 printf("Enter player name [lenght 23]: ");
 scanf("%s",playerName);
+do {
+send(sock, 1,1,0);
+send(sock, playerName, strlen(playerName),0);
+}while(1);
 
       message = "GET / HTTP/1.1\r\n\r\n";
    if( send(sock , message , strlen(message) , 0) < 0)
@@ -93,7 +108,11 @@ scanf("%s",playerName);
    }
    puts("Reply received\n");
    puts(server_reply);
-
-return 0;
+*/
+initBomberDisplay();
+display();
+draw_wall(0,0);
+display()
+//return 0;
 
 }
