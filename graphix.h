@@ -23,8 +23,4 @@ void draw_wall(float , float );
 
 void draw_crate(float , float );
 
-void display();
-
 void reshape(GLsizei, GLsizei);
-
-void initBomberDisplay();

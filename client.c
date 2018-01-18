@@ -33,10 +33,27 @@ int senderBomber(int *datagramma)
 
 void redraw_Screen()
 {
-
+glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+draw_crate(0,0);
+glFlush();
 }
 
 
+void initBomberDisplay()
+{
+
+  char *myargv [1];
+  int myargc=1;
+  myargv [0]=strdup ("Tronberman");
+  glutInit(&myargc, myargv);         // Initialize GLUT
+  glutInitWindowSize(screenWidth, screenHeight);   // Set the window's initial width & height - non-square
+  glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
+  glutCreateWindow("Tronberman");  // Create window with the given title
+  glutDisplayFunc(redraw_Screen);       // Register callback handler for window re-paint event
+  glutReshapeFunc(reshape);       // Register callback handler for window re-size event
+  initGL();                       // Our own OpenGL initialization
+  glutMainLoop();                 // Enter the infinite event-processing loop
+}
 
 
 
@@ -110,9 +127,8 @@ send(sock, playerName, strlen(playerName),0);
    puts(server_reply);
 */
 initBomberDisplay();
-display();
-draw_wall(0,0);
-display()
+
+//display();
 //return 0;
 
 }

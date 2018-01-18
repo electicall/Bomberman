@@ -119,36 +119,6 @@ void draw_crate(float x, float y)
   glEnd();
 }
 
-void display() {
-
-   glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer with current clearing color
-
-   glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-                 // Each set of 4 vertices form a quad
-                 /*
-   int sk=0;
-      for (float x=-1;x<=1;x=x+0.2)
-      {
-        for (float y=1;y>=-1;y=y-0.2)
-        {  glLineWidth(1.0);
-          if (game_map[sk]==1){draw_wall(x,y);}
-          if (game_map[sk]==2){draw_crate(x,y);}
-          if (game_map[sk]==3){draw_bomb(x,y);}
-          if (game_map[sk]==4){draw_figure(x,y);}
-          sk++;
-
-
-
-        }
-      }
-
-
-
-
-*/
-   glFlush();  // Render now
-}
-
 
 /* Handler for window re-size event. Called back when the window first appears and
    whenever the window is re-sized with its new width and height */
@@ -170,20 +140,4 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
       // aspect < 1, set the width to -1 to 1, with larger height
      gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
    }
-}
-
-void initBomberDisplay()
-{
-
-  char *myargv [1];
-  int myargc=1;
-  myargv [0]=strdup ("Tronberman");
-  glutInit(&myargc, myargv);         // Initialize GLUT
-  glutInitWindowSize(screenWidth, screenHeight);   // Set the window's initial width & height - non-square
-  glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
-  glutCreateWindow("Tronberman");  // Create window with the given title
-  glutDisplayFunc(display);       // Register callback handler for window re-paint event
-  glutReshapeFunc(reshape);       // Register callback handler for window re-size event
-  initGL();                       // Our own OpenGL initialization
-  glutMainLoop();                 // Enter the infinite event-processing loop
 }
